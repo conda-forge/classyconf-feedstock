@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/classyconf-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/classyconf-{{ version }}.tar.gz
   sha256: b04c7e7de2d00feefb85dbe1b72c4ab932f6135cdb8e6eccd73f7ccfa5fd63a9
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script:
     # Removing pyproject.toml here due to pip bug
@@ -22,9 +22,9 @@ requirements:
   host:
     - pip
     - poetry
-    - python >=3.6
+    - python {{ python_min }}
   run:
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -33,6 +33,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/hernantz/classyconf
